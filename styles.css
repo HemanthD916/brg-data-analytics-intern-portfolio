@@ -1,0 +1,372 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+
+header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    height: 60px;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: 2.2rem;
+    color: #2a5298;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #2a5298;
+    position: relative;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background-color: #ffcc00;
+}
+
+
+#about {
+    background-color: white;
+    border-radius: 10px;
+    margin: 2rem auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #2a5298;
+    margin: 1rem auto 2rem;
+    display: block;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+#skills {
+    background-color: #f8f9fa;
+}
+
+#skills ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+#skills li {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+#skills li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#skills strong {
+    color: #2a5298;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+
+#education {
+    background-color: white;
+}
+
+#education ul {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+#education li {
+    background: #f8f9fa;
+    margin-bottom: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid #2a5298;
+}
+
+
+#projects {
+    background-color: #f8f9fa;
+}
+
+.project {
+    background-color: white;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #2a5298;
+    transition: transform 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project h3 {
+    color: #2a5298;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.project-links {
+    margin: 1rem 0;
+}
+
+.project-links a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 2px solid #2a5298;
+    border-radius: 30px;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.project-links a:hover {
+    background-color: #2a5298;
+    color: white;
+}
+
+
+code, pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: block;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95em;
+    margin: 1.5rem 0;
+    border-left: 4px solid #007acc;
+    tab-size: 4;
+}
+
+
+pre .keyword { color: #569cd6; }
+pre .string { color: #ce9178; }
+pre .comment { color: #6a9955; }
+pre .function { color: #dcdcaa; }
+pre .number { color: #b5cea8; }
+
+.highlight {
+    background-color: #fff9e6;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #ffcc00;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+}
+
+
+#why-brg {
+    background-color: white;
+}
+
+#why-brg ul {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+#why-brg li {
+    background: #f0f7ff;
+    margin-bottom: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid #2a5298;
+    position: relative;
+    padding-left: 3rem;
+}
+
+#why-brg li::before {
+    content: '✓';
+    position: absolute;
+    left: 1rem;
+    color: #2a5298;
+    font-weight: bold;
+}
+
+
+#contact {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+#contact p {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+
+footer {
+    background-color: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    opacity: 0.9;
+}
+
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    nav a {
+        width: 80%;
+        text-align: center;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+    }
+    
+    section h2 {
+        font-size: 1.8rem;
+    }
+    
+    #skills ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-links a {
+        display: block;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+
+@media print {
+    header, footer, nav {
+        display: none;
+    }
+    
+    section {
+        padding: 1rem;
+        box-shadow: none;
+    }
+    
+    .project-links {
+        display: none;
+    }
+    
+    code, pre {
+        background-color: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+}
