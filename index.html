@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemanth D - Data Analytics Intern Applicant | BRG Sports</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="riddell-logo.jpg" type="image/jpg"> 
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="riddell-logo.jpg" alt="Riddell Logo" class="logo"> 
+            <h1>Hemanth Dhamodharan</h1>
+            <p>Aspiring Data Analytics Intern at BRG Sports</p>
+            <nav>
+                <a href="#about">About Me</a>
+                <a href="#skills">Skills</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#why-brg">Why BRG?</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="profile-photo.jpg" alt="Hemanth D Profile Photo" class="profile-photo"> 
+        <p>Detail oriented Business Computer Information Systems senior at the University of North Texas, passionate about data analytics, AI, and tech driven problem solving. Proficient in Python, SQL, Tableau, Power BI, and Excel for data tracking, reporting, and automation. Eager to contribute to BRG Sports by analyzing data to enhance business processes, support project implementations, and deliver actionable insights in the sports equipment industry.</p>
+        <p>As a current senior pursuing a BS in Business Computer Information Systems, I meet BRG's education requirements. My hands on experience with data manipulation, visualization, and statistical analysis aligns directly with the internship's focus on data collection, cleaning, analysis, visualization, and reporting to drive data informed decisions.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills & Core Competencies</h2>
+        <p>Tailored to BRG's Data Analytics Intern Qualifications:</p>
+        <ul>
+            <li><strong>Programming & Data Manipulation:</strong> Python (Pandas, NumPy), SQL, R basics essential for data collection, cleaning, wrangling, and analysis from databases, APIs, or spreadsheets.</li>
+            <li><strong>Data Visualization & Reporting:</strong> Tableau, Power BI, Matplotlib/Seaborn, Excel (Microsoft Office Specialist Certified) for creating dashboards, charts, and reports to communicate trends and insights effectively.</li>
+            <li><strong>Statistical Knowledge:</strong> Mean, median, standard deviation, hypothesis testing, distributions from coursework in Data Analysis and Business Statistics with Spreadsheets.</li>
+            <li><strong>Machine Learning Basics:</strong> Familiar with linear regression, clustering via Data Science Job Simulation ready to assist with predictive modeling if needed.</li>
+            <li><strong>Tools & Platforms:</strong> Jupyter Notebooks, Google Sheets, Microsoft Office Suite, Linux, PuTTY, WinSCP for automation, ad hoc analyses, and documentation.</li>
+            <li><strong>Concepts:</strong> Data Analysis, ERDs, Data Visualization, Object Oriented Programming to support forecasting, trend analysis, and process optimization.</li>
+            <li><strong>Soft Skills:</strong> Analytical Thinking, Collaboration, Communication, Adaptability, Data Driven Decision Making, Attention to Detail for working with IT teams, presenting findings, and tackling real world challenges.</li>
+        </ul>
+    </section>
+
+    <section id="education">
+        <h2>Education & Certifications</h2>
+        <p>Bachelor of Science in Business Computer Information Systems<br>University of North Texas, Denton, TX<br>Expected Graduation: May 2026 | GPA: 3.2</p>
+        <p>Relevant Coursework: Data Analysis, Business Statistics with Spreadsheets, Introduction to Database Applications, Analysis of Business Information Systems, Computer Science I & II, Object Oriented Programming, Enterprise Programming—building a strong foundation in data handling and analytics.</p>
+        <ul>
+            <li>Microsoft Office Specialist: Excel Associate (Spring 2024)</li>
+            <li>IBM Z Xplore Advanced Badge (Fall 2024)</li>
+            <li>Data Analytics Job Simulation (Spring 2025)</li>
+            <li>Data Science Job Simulation (Spring 2025)</li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Project Experience</h2>
+        <p>Projects showcasing data analytics skills: collection, cleaning, analysis, visualization, and reporting—directly relevant to BRG's internship responsibilities like identifying trends, supporting decisions, and automating processes.</p>
+        <div class="project">
+            <h3>Library Management System – Python (Summer 2024)</h3>
+            <p>Built a full-stack system for managing library data (books, patrons, loans) using OOP. Handled data entry, tracking fines/loans, and generating reports. Deployed as a web app with Flask for interactive data queries and visualizations—simulating real-world data analytics for inventory optimization and user insights.</p>
+            <p><a href="https://hemanthd916.pythonanywhere.com" target="_blank">Live Demo</a> | <a href="https://github.com/hemanthd916/library-management-system" target="_blank">View Code on GitHub</a></p>
+            <pre><code># Sample Python Code: Data Analysis Snippet
+import pandas as pd
+
+# Simulate loading loan data for analysis
+loans = pd.read_json('library_data.json')['loans']
+overdue = loans[loans['status'] == 'overdue']
+print(overdue.describe())  # Summary stats for trends
+</code></pre>
+        </div>
+        <div class="project">
+            <h3>Mean Green EagleLift Ride-Sharing System – C++ (Fall 2023)</h3>
+            <p>Designed a system with ERD for data modeling, matching algorithms for efficiency. Analyzed simulated ride data for inclusivity metrics (e.g., accessibility matches)—demonstrating data-driven optimization and reporting techniques applicable to business analytics.</p>
+            <pre><code>// Sample C++ Code: Data Matching & Analysis
+bool match(Driver d, Passenger p) {
+    return d.capacity >= p.needs &amp;&amp; d.accessible == p.requires;
+}
+// Aggregate matches for stats (e.g., success rate)
+</code></pre>
+        </div>
+    </section>
+
+    <section id="why-brg">
+        <h2>Why BRG Sports?</h2>
+        <p>BRG Sports, through Riddell, leads in data-driven innovations for athlete safety and performance—like helmet analytics for impact data. My passion for data analytics aligns with this internship: I'd love to clean and analyze datasets for business insights, create visualizations for process improvements, and support IT projects that enhance sports gear efficiency. Let's use data to champion safer play!</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: hemanthd916@example.com | Phone: (123) 456-7890 | LinkedIn: linkedin.com/in/hemanthd916 | GitHub: github.com/hemanthd916</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Hemanth D. Custom Portfolio for BRG Data Analytics Internship. Deployed via GitHub & Vercel.</p>
+    </footer>
+</body>
+</html>
