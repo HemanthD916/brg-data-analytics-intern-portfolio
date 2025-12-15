@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="riddell-logo.jpg" type="image/jpg"> 
     <style>
-        
+        /* Additional styles for code snippets */
         code, pre {
             background-color: #f5f5f5;
             border-radius: 5px;
@@ -33,7 +33,20 @@
             margin-top: 0;
         }
         
+        .project-links {
+            margin: 10px 0;
+        }
         
+        .project-links a {
+            color: #2a7de1;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .project-links a:hover {
+            text-decoration: underline;
+        }
         
         .highlight {
             background-color: #fff9e6;
@@ -101,12 +114,15 @@
 
     <section id="projects">
         <h2>Project Experience</h2>
-        <p>Hands on projects showcasing end to end data analytics skills: from data collection and cleaning to analysis, visualization, and strategic recommendations—directly relevant to BRG's internship responsibilities.</p>
+        <p>Hands-on projects showcasing end-to-end data analytics skills: from data collection and cleaning to analysis, visualization, and strategic recommendations—directly relevant to BRG's internship responsibilities.</p>
         
         <div class="project">
             <h3>Library Management System – Python (Summer 2024)</h3>
-            <p>Developed a full stack Python system for managing library catalogs using OOP principles like inheritance and polymorphism. Implemented functionality to add/edit/delete/track patrons, items, fines, and loans. Demonstrates data handling, integration simulation, and reporting relevant to data management in enterprise environments.</p>
-            
+            <p>Developed a full-stack Python system for managing library catalogs using OOP principles like inheritance and polymorphism. Implemented functionality to add/edit/delete/track patrons, items, fines, and loans. Demonstrates data handling, integration simulation, and reporting relevant to data management in enterprise environments.</p>
+            <div class="project-links">
+                <a href="https://hemanthd916.pythonanywhere.com" target="_blank">Live Demo</a>
+                <a href="https://github.com/hemanthd916/library-management-system" target="_blank">GitHub Repository</a>
+            </div>
             <pre><code># Sample Python Code: OOP Inheritance for Data Management
 class LibraryItem:
     def __init__(self, title, item_id):
