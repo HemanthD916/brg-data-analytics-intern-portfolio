@@ -317,14 +317,18 @@ topSegments &lt;- salesBySegment[<span class="function">order</span>(-Total_Sale
         </div>
         
         <div class="project">
-            <h3>Mean Green EagleLift Ride-Sharing System – C++ (Fall 2023)</h3>
-            <p>Designed a C++ ride-sharing system with ERD for data modeling and matching algorithms for efficiency. Analyzed simulated ride data for inclusivity metrics (e.g., accessibility matches), demonstrating data driven optimization and algorithmic thinking applicable to business analytics.</p>
-            
-            <pre><code><span class="comment">// Sample C++ Code: Data Matching & Analysis for Ride-Sharing</span>
+        <h3>Mean Green EagleLift Ride-Sharing System – C++ (Fall 2023)</h3>
+        <p>Designed a C++ ride sharing system with ERD for data modeling and matching algorithms for efficiency. Analyzed simulated ride data for inclusivity metrics (e.g., accessibility matches), demonstrating data driven optimization and algorithmic thinking applicable to business analytics.</p>
+
+        
+        <p><em>Excerpt from a larger C++ system illustrating data modeling and matching logic.</em></p>
+
+        
+        <pre><code><span class="comment">// Sample C++ Code: Data Matching & Analysis for Ride-Sharing</span>
 <span class="preprocessor">#include</span> &lt;vector&gt;
 <span class="preprocessor">#include</span> &lt;algorithm&gt;
+<span class="preprocessor">#include</span> &lt;iostream&gt;
 
-<span class="comment">// Data structure for driver information</span>
 <span class="keyword">struct</span> Driver {
     <span class="type">int</span> id;
     <span class="type">int</span> capacity;
@@ -332,40 +336,48 @@ topSegments &lt;- salesBySegment[<span class="function">order</span>(-Total_Sale
     <span class="type">double</span> rating;
 };
 
-<span class="comment">// Data structure for passenger information</span>  
 <span class="keyword">struct</span> Passenger {
     <span class="type">int</span> id;
-    <span class="type">int</span> needs;  <span class="comment">// Number of passengers</span>
+    <span class="type">int</span> needs;
     <span class="type">bool</span> requiresAccessible;
 };
 
-<span class="comment">// Matching algorithm based on data analysis</span>
-vector&lt;<span class="type">int</span>&gt; <span class="function">matchDriversToPassengers</span>(vector&lt;Driver&gt;& drivers, vector&lt;Passenger&gt;& passengers) {
-    vector&lt;<span class="type">int</span>&gt; matches;
-    
-    <span class="comment">// Sort by capacity for optimal matching (data optimization)</span>
-    <span class="function">sort</span>(drivers.<span class="function">begin</span>(), drivers.<span class="function">end</span>(), 
-         [](Driver a, Driver b) { <span class="keyword">return</span> a.capacity &gt; b.capacity; });
-    
-    <span class="comment">// Match passengers with appropriate drivers</span>
-    <span class="keyword">for</span> (<span class="keyword">auto</span>& passenger : passengers) {
+std::vector&lt;<span class="type">int</span>&gt; <span class="function">matchDriversToPassengers</span>(
+    std::vector&lt;Driver&gt;& drivers,
+    std::vector&lt;Passenger&gt;& passengers
+) {
+    std::vector&lt;<span class="type">int</span>&gt; matches;
+
+    std::sort(drivers.begin(), drivers.end(),
+        [](const Driver& a, const Driver& b) {
+            <span class="keyword">return</span> a.capacity &gt; b.capacity;
+        }
+    );
+
+    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>& passenger : passengers) {
         <span class="keyword">for</span> (<span class="keyword">auto</span>& driver : drivers) {
-            <span class="keyword">if</span> (driver.capacity &gt;= passenger.needs &amp;&amp; 
+            <span class="keyword">if</span> (driver.capacity &gt;= passenger.needs &&
                 (!passenger.requiresAccessible || driver.accessible)) {
+
                 matches.<span class="function">push_back</span>(driver.id);
-                driver.capacity -= passenger.needs;  <span class="comment">// Update available capacity</span>
+                driver.capacity -= passenger.needs;
                 <span class="keyword">break</span>;
             }
         }
     }
-    
-    <span class="comment">// Calculate and report matching success rate (analytics)</span>
-    <span class="type">double</span> successRate = (matches.<span class="function">size</span>() * <span class="number">100.0</span>) / passengers.<span class="function">size</span>();
-    cout &lt;&lt; <span class="string">"Matching success rate: "</span> &lt;&lt; successRate &lt;&lt; <span class="string">"%"</span> &lt;&lt; endl;
-    
+
+    <span class="type">double</span> successRate =
+        (matches.<span class="function">size</span>() * <span class="number">100.0</span>) /
+        passengers.<span class="function">size</span>();
+
+    std::<span class="function">cout</span> &lt;&lt; <span class="string">"Matching success rate: "</span>
+              &lt;&lt; successRate &lt;&lt; <span class="string">"%"</span>
+              &lt;&lt; std::<span class="function">endl</span>;
+
     <span class="keyword">return</span> matches;
-}</code></pre>
-        </div>
+}
+</code></pre>
+    </div>
     </section>
 
     <section id="why-brg">
