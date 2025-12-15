@@ -1,0 +1,458 @@
+-- SQL PROJECT: CAMPGROUND RESERVATION SYSTEM
+-- IBM DB2 SQL for IBM Z Environment
+-- Demonstrating: Database Design, Complex Queries, Data Modeling
+
+-- ============================================
+-- TABLE CREATION AND TABLESPACES
+-- ============================================
+
+CREATE TABLESPACE CAMPGRD IN P019DB USING STOGROUP UNTDISK;
+                                                           
+CREATE TABLE CAMPGRD (                                     
+    CAMP_ID INT NOT NULL PRIMARY KEY,                      
+    CAMP_NAME VARCHAR(30),                                 
+    CAMP_SITES INT                                         
+) IN P019DB.CAMPGRD;                                       
+COMMIT;                                                                                                      
+                                                            
+CREATE TABLESPACE CSTYPE IN P019DB USING STOGROUP UNTDISK;  
+
+CREATE TABLE STYPE (
+    STYPE_ID INT NOT NULL PRIMARY KEY,  
+    STYPE_DESC VARCHAR(30),
+    STYPE_ELEC INT
+) IN P019DB.CSTYPE;
+COMMIT;                                                 
+                                                            
+CREATE TABLESPACE CAMSITE IN P019DB USING STOGROUP UNTDISK; 
+
+CREATE TABLE CAMSITE (
+    SITE_ID INT NOT NULL PRIMARY KEY,  
+    SITE_NAME VARCHAR(10),
+    STYPE_ID INT,
+    CAMP_ID INT,
+    SITE_FRING INT,
+    SITE_GRILL INT
+) IN P019DB.CAMSITE;
+COMMIT;                                                 
+                                                            
+CREATE TABLESPACE CUSTOMER IN P019DB USING STOGROUP UNTDISK;
+
+CREATE TABLE CUSTOMER (
+    CUS_ID INT NOT NULL PRIMARY KEY,  
+    CUS_FNAME VARCHAR(20),
+    CUS_LNAME VARCHAR(30),
+    CUS_EMAIL VARCHAR(20),
+    CUS_PHONE VARCHAR(10),
+    CUS_TAG VARCHAR(10),
+    CUS_TAGST CHAR(2)
+) IN P019DB.CUSTOMER;
+COMMIT;                                                 
+                                                            
+CREATE TABLESPACE RESERVE IN P019DB USING STOGROUP UNTDISK; 
+
+CREATE TABLE RESERVE (
+    RES_ID INT NOT NULL PRIMARY KEY,  
+    CUS_ID INT,
+    SITE_ID INT,
+    RES_ARRIV DATE,
+    RES_DEPART DATE
+) IN P019DB.RESERVE;
+COMMIT;                
+
+-- ============================================
+-- INDEXES FOR PERFORMANCE OPTIMIZATION
+-- ============================================
+
+CREATE INDEX UNTP019.FK_CAMSITE_STY ON UNTP019.CAMSITE(STYPE_ID)
+USING STOGROUP UNTDISK;                                         
+                                                                
+CREATE INDEX UNTP019.FK_CAMSITE_CAM ON UNTP019.CAMSITE(CAMP_ID) 
+USING STOGROUP UNTDISK;                                         
+                                                                
+CREATE INDEX UNTP019.FK_RESERVE_CUS ON UNTP019.RESERVE(CUS_ID)  
+USING STOGROUP UNTDISK;                                         
+                                                                
+CREATE INDEX UNTP019.FK_RESERVE_SITE ON UNTP019.RESERVE(SITE_ID)
+USING STOGROUP UNTDISK;                                         
+COMMIT;  
+
+CREATE UNIQUE INDEX UNTP019.IDX_STYPE_ID                      
+ON UNTP019.STYPE(STYPE_ID)                                    
+USING STOGROUP UNTDISK;                                       
+COMMIT;                                                       
+                                                              
+ALTER TABLE UNTP019.CAMSITE                                   
+ADD FOREIGN KEY (STYPE_ID) REFERENCES UNTP019.STYPE(STYPE_ID);
+COMMIT;   
+
+CREATE UNIQUE INDEX UNTP019.IDX_CAMPGRD_CAMP_ID 
+ON UNTP019.CAMPGRD(CAMP_ID) 
+USING STOGROUP UNTDISK;
+COMMIT;
+
+CREATE UNIQUE INDEX UNTP019.IDX_CUSTOMER_CUS_ID 
+ON UNTP019.CUSTOMER(CUS_ID) 
+USING STOGROUP UNTDISK;
+COMMIT;
+
+CREATE UNIQUE INDEX UNTP019.IDX_CAMSITE_SITE_ID 
+ON UNTP019.CAMSITE(SITE_ID) 
+USING STOGROUP UNTDISK;
+COMMIT;    
+
+ALTER TABLE UNTP019.CAMSITE
+ADD FOREIGN KEY (CAMP_ID) REFERENCES UNTP019.CAMPGRD(CAMP_ID);
+COMMIT;
+
+ALTER TABLE UNTP019.RESERVE
+ADD FOREIGN KEY (CUS_ID) REFERENCES UNTP019.CUSTOMER(CUS_ID);
+COMMIT;
+
+ALTER TABLE UNTP019.RESERVE
+ADD FOREIGN KEY (SITE_ID) REFERENCES UNTP019.CAMSITE(SITE_ID);
+COMMIT;    
+
+CREATE UNIQUE INDEX UNTP019.IDX_RESERVE_RES_ID 
+ON UNTP019.RESERVE(RES_ID) 
+USING STOGROUP UNTDISK;
+COMMIT;                                                                                                                                   
+
+-- ============================================
+-- SAMPLE DATA INSERTION
+-- ============================================
+
+INSERT INTO UNTP019.CAMPGRD (CAMP_ID, CAMP_NAME, CAMP_SITES) VALUES 
+(2, 'Pine Grove Retreat', 74);                                                  
+INSERT INTO UNTP019.CAMPGRD (CAMP_ID, CAMP_NAME, CAMP_SITES) VALUES 
+(3, 'Eagles Nest Camp', 19);                                                    
+COMMIT;   
+
+INSERT INTO UNTP019.STYPE (STYPE_ID, STYPE_DESC, STYPE_ELEC) VALUES 
+(2, 'RV SITE PRIMITIVE', 0);                                                    
+INSERT INTO UNTP019.STYPE (STYPE_ID, STYPE_DESC, STYPE_ELEC) VALUES 
+(3, 'TENT SITE', 1);                                                            
+INSERT INTO UNTP019.STYPE (STYPE_ID, STYPE_DESC, STYPE_ELEC) VALUES 
+(4, 'TENT SITE PRIMITIVE', 0);                                                  
+COMMIT;      
+
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (2, 'ENC-1', 2, 3, 0, 1);                                               
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (3, 'ENC-2', 2, 3, 1, 0);                                               
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (4, 'PGR_1', 1, 2, 0, 0);                                               
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (5, 'PG-2', 3, 2, 1, 0);                                                
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (6, 'PG-3', 4, 2, 1, 1); 
+COMMIT;
+
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (7, 'PGR-2', 2, 2, 0, 0);                                               
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (8, 'ENC-3', 1, 3, 0, 0);                                               
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (9, 'PGR-3', 2, 2, 1, 0);                                               
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (10, 'PGR-4', 4, 2, 1, 1);                                              
+INSERT INTO UNTP019.CAMSITE (SITE_ID, SITE_NAME, STYPE_ID, CAMP_ID, SITE_FRING, SITE_GRILL) 
+VALUES (11, 'PGR-5', 4, 2, 0, 1);                                              
+COMMIT;
+
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (1, 'John', 'Smith', 'john@example.com', '555-0110', 'ABC001', 'CA');    
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (2, 'Jane', 'Johnson', 'jane@example.com', '555-0111', 'GHE2841', 'TX'); 
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (3, 'Alex', 'Williams', 'alex@example.com', '555-0112', 'AFG111', 'FL'); 
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (4, 'Emma', 'Brown', 'emma@example.com', '555-0113', 'KUG874', 'NY');    
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST)
+VALUES (5, 'Chris', 'Jones', 'chris@example.com', '555-0114', 'OIU1258', 'TX');
+COMMIT;
+
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (6, 'Olivia', 'Garcia', 'olivia@example.com', '555-0115', 'LKK885', 'IL');
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (7, 'Ryan', 'Miller', 'ryan@example.com', '555-0116', 'LOY1744', 'TX');  
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (8, 'Sophia', 'Davis', 'sophia@example.com', '555-0117', 'POO552', 'OK');
+INSERT INTO UNTP019.CUSTOMER (CUS_ID, CUS_FNAME, CUS_LNAME, CUS_EMAIL, CUS_PHONE, CUS_TAG, CUS_TAGST) 
+VALUES (9, 'Liam', 'Martinez', 'liam@example.com', '555-0118', 'CRT258', 'OK'); 
+COMMIT; 
+
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (1, 5, 8, '2024-09-04', '2024-12-12');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (2, 8, 5, '2024-06-22', '2024-07-09');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (3, 4, 10, '2024-08-27', '2024-11-25');                                
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (4, 4, 2, '2024-07-25', '2024-11-17');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (5, 5, 2, '2024-09-10', '2024-09-23');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (6, 6, 9, '2024-02-11', '2024-12-10');
+COMMIT;
+
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (7, 9, 5, '2024-10-29', '2024-12-03');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (8, 9, 4, '2024-01-08', '2024-03-23');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (9, 4, 8, '2024-01-17', '2024-03-08');                                 
+INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART) 
+VALUES (10, 6, 7, '2024-05-17', '2024-05-30');                                
+COMMIT;
+
+-- ============================================
+-- DATA VERIFICATION QUERIES
+-- ============================================
+
+SELECT * FROM CAMPGRD;
+SELECT * FROM STYPE;
+SELECT * FROM CAMSITE;
+SELECT * FROM CUSTOMER;
+SELECT * FROM RESERVE;
+
+-- ============================================
+-- BUSINESS INTELLIGENCE & ANALYTICS QUERIES
+-- ============================================
+
+-- 1. Campsites ordered by size (for capacity planning)
+SELECT CAMP_NAME, CAMP_SITES  
+FROM UNTP019.CAMPGRD  
+ORDER BY CAMP_SITES DESC;
+
+-- 2. Camps with electric sites AND fire rings (premium amenities analysis)
+SELECT DISTINCT C.CAMP_NAME  
+FROM UNTP019.CAMPGRD C  
+JOIN UNTP019.CAMSITE S ON C.CAMP_ID = S.CAMP_ID  
+JOIN UNTP019.STYPE T ON S.STYPE_ID = T.STYPE_ID  
+WHERE T.STYPE_ELEC > 0 AND S.SITE_FRING = 1;  
+
+-- 3. Customer reservation frequency analysis (identifying loyal customers)
+SELECT   
+  C.CUS_FNAME || ' ' || C.CUS_LNAME AS FULL_NAME,  
+  C.CUS_EMAIL,  
+  COUNT(R.RES_ID) AS RESERVATION_COUNT  
+FROM UNTP019.CUSTOMER C  
+JOIN UNTP019.RESERVE R ON C.CUS_ID = R.CUS_ID  
+GROUP BY C.CUS_ID, C.CUS_FNAME, C.CUS_LNAME, C.CUS_EMAIL
+ORDER BY RESERVATION_COUNT DESC;
+
+-- 4. Sites with both fire ring and grill (premium site analysis)
+SELECT S.SITE_NAME, C.CAMP_NAME  
+FROM UNTP019.CAMSITE S  
+JOIN UNTP019.CAMPGRD C ON S.CAMP_ID = C.CAMP_ID  
+WHERE S.SITE_FRING = 1 AND S.SITE_GRILL = 1;  
+
+-- 5. Reservations active during specific date range (operational reporting)
+SELECT   
+  C.CUS_FNAME || ' ' || C.CUS_LNAME AS CUSTOMER_NAME,  
+  R.RES_ID,  
+  R.RES_ARRIV,  
+  R.RES_DEPART  
+FROM UNTP019.RESERVE R  
+JOIN UNTP019.CUSTOMER C ON R.CUS_ID = C.CUS_ID  
+WHERE R.RES_ARRIV <= '2024-08-18' AND R.RES_DEPART >= '2024-08-01';  
+
+-- 6. Customers with no reservations (potential marketing targets)
+SELECT   
+  C.CUS_FNAME || ' ' || C.CUS_LNAME AS CUSTOMER_NAME,  
+  C.CUS_EMAIL  
+FROM UNTP019.CUSTOMER C  
+LEFT JOIN UNTP019.RESERVE R ON C.CUS_ID = R.CUS_ID  
+WHERE R.RES_ID IS NULL;  
+
+-- 7. Count of electric sites by camp (infrastructure analysis)
+SELECT C.CAMP_NAME, COUNT(S.SITE_ID) AS ELECTRIC_SITES  
+FROM UNTP019.CAMPGRD C  
+JOIN UNTP019.CAMSITE S ON C.CAMP_ID = S.CAMP_ID  
+JOIN UNTP019.STYPE T ON S.STYPE_ID = T.STYPE_ID  
+WHERE T.STYPE_ELEC > 0  
+GROUP BY C.CAMP_NAME
+ORDER BY ELECTRIC_SITES DESC;  
+
+-- 8. Reservations at large campgrounds (capacity > 10 sites)
+SELECT C.CAMP_NAME, S.SITE_NAME, R.RES_ARRIV, R.RES_DEPART  
+FROM UNTP019.RESERVE R  
+JOIN UNTP019.CAMSITE S ON R.SITE_ID = S.SITE_ID  
+JOIN UNTP019.CAMPGRD C ON S.CAMP_ID = C.CAMP_ID  
+WHERE C.CAMP_SITES > 10;
+
+-- 9. Reservation duration analysis (average stay length)
+SELECT 
+  C.CAMP_NAME,
+  AVG(DATEDIFF(DAY, R.RES_ARRIV, R.RES_DEPART)) AS AVG_STAY_DAYS,
+  COUNT(R.RES_ID) AS TOTAL_RESERVATIONS
+FROM UNTP019.RESERVE R
+JOIN UNTP019.CAMSITE S ON R.SITE_ID = S.SITE_ID
+JOIN UNTP019.CAMPGRD C ON S.CAMP_ID = C.CAMP_ID
+GROUP BY C.CAMP_NAME
+ORDER BY AVG_STAY_DAYS DESC;
+
+-- 10. Peak season analysis (reservations by month)
+SELECT 
+  MONTH(RES_ARRIV) AS MONTH_NUM,
+  COUNT(RES_ID) AS RESERVATION_COUNT
+FROM UNTP019.RESERVE
+GROUP BY MONTH(RES_ARRIV)
+ORDER BY RESERVATION_COUNT DESC;
+
+-- ============================================
+-- VIEWS FOR COMMON REPORTING NEEDS
+-- ============================================
+
+-- View 1: Available sites (for real-time booking system)
+CREATE VIEW UNTP019.VW_AVAILABLE_SITES AS
+SELECT 
+  S.SITE_ID,
+  S.SITE_NAME,
+  C.CAMP_NAME,
+  T.STYPE_DESC,
+  T.STYPE_ELEC,
+  S.SITE_FRING,
+  S.SITE_GRILL
+FROM UNTP019.CAMSITE S
+JOIN UNTP019.CAMPGRD C ON S.CAMP_ID = C.CAMP_ID
+JOIN UNTP019.STYPE T ON S.STYPE_ID = T.STYPE_ID
+WHERE S.SITE_ID NOT IN (
+  SELECT SITE_ID 
+  FROM UNTP019.RESERVE 
+  WHERE CURRENT_DATE BETWEEN RES_ARRIV AND RES_DEPART
+);
+
+-- View 2: Customer reservation summary
+CREATE VIEW UNTP019.VW_CUSTOMER_SUMMARY AS
+SELECT 
+  C.CUS_ID,
+  C.CUS_FNAME || ' ' || C.CUS_LNAME AS FULL_NAME,
+  C.CUS_EMAIL,
+  C.CUS_TAGST AS STATE,
+  COUNT(R.RES_ID) AS TOTAL_RESERVATIONS,
+  SUM(DATEDIFF(DAY, R.RES_ARRIV, R.RES_DEPART)) AS TOTAL_STAY_DAYS
+FROM UNTP019.CUSTOMER C
+LEFT JOIN UNTP019.RESERVE R ON C.CUS_ID = R.CUS_ID
+GROUP BY C.CUS_ID, C.CUS_FNAME, C.CUS_LNAME, C.CUS_EMAIL, C.CUS_TAGST;
+
+-- View 3: Revenue projection (assuming $50/night)
+CREATE VIEW UNTP019.VW_REVENUE_PROJECTION AS
+SELECT 
+  C.CAMP_NAME,
+  COUNT(R.RES_ID) AS UPCOMING_RESERVATIONS,
+  SUM(DATEDIFF(DAY, R.RES_ARRIV, R.RES_DEPART)) * 50 AS PROJECTED_REVENUE
+FROM UNTP019.RESERVE R
+JOIN UNTP019.CAMSITE S ON R.SITE_ID = S.SITE_ID
+JOIN UNTP019.CAMPGRD C ON S.CAMP_ID = C.CAMP_ID
+WHERE R.RES_ARRIV >= CURRENT_DATE
+GROUP BY C.CAMP_NAME;
+
+-- ============================================
+-- STORED PROCEDURE FOR NEW RESERVATION
+-- ============================================
+
+CREATE PROCEDURE UNTP019.ADD_RESERVATION (
+  IN P_CUS_ID INT,
+  IN P_SITE_ID INT,
+  IN P_ARRIVAL_DATE DATE,
+  IN P_DEPARTURE_DATE DATE
+)
+LANGUAGE SQL
+BEGIN
+  DECLARE V_RES_ID INT;
+  
+  -- Get next reservation ID
+  SELECT COALESCE(MAX(RES_ID), 0) + 1 INTO V_RES_ID
+  FROM UNTP019.RESERVE;
+  
+  -- Check site availability
+  IF EXISTS (
+    SELECT 1 FROM UNTP019.RESERVE
+    WHERE SITE_ID = P_SITE_ID
+    AND (P_ARRIVAL_DATE BETWEEN RES_ARRIV AND RES_DEPART
+         OR P_DEPARTURE_DATE BETWEEN RES_ARRIV AND RES_DEPART)
+  ) THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Site is not available for the selected dates';
+  ELSE
+    -- Insert reservation
+    INSERT INTO UNTP019.RESERVE (RES_ID, CUS_ID, SITE_ID, RES_ARRIV, RES_DEPART)
+    VALUES (V_RES_ID, P_CUS_ID, P_SITE_ID, P_ARRIVAL_DATE, P_DEPARTURE_DATE);
+    
+    COMMIT;
+  END IF;
+END;
+
+-- ============================================
+-- COMPLEX ANALYTICAL QUERY WITH WINDOW FUNCTION
+-- ============================================
+
+-- Customer ranking by total stay duration (analytical reporting)
+SELECT 
+  FULL_NAME,
+  STATE,
+  TOTAL_RESERVATIONS,
+  TOTAL_STAY_DAYS,
+  RANK() OVER (ORDER BY TOTAL_STAY_DAYS DESC) AS CUSTOMER_RANK,
+  PERCENT_RANK() OVER (ORDER BY TOTAL_STAY_DAYS DESC) AS PERCENTILE
+FROM UNTP019.VW_CUSTOMER_SUMMARY
+WHERE TOTAL_RESERVATIONS > 0;
+
+-- ============================================
+-- DATA QUALITY CHECKS
+-- ============================================
+
+-- Check for overlapping reservations (data integrity)
+SELECT 
+  R1.RES_ID AS RES1,
+  R2.RES_ID AS RES2,
+  R1.SITE_ID,
+  R1.RES_ARRIV AS START1,
+  R1.RES_DEPART AS END1,
+  R2.RES_ARRIV AS START2,
+  R2.RES_DEPART AS END2
+FROM UNTP019.RESERVE R1
+JOIN UNTP019.RESERVE R2 ON R1.SITE_ID = R2.SITE_ID
+  AND R1.RES_ID < R2.RES_ID
+  AND R1.RES_ARRIV <= R2.RES_DEPART
+  AND R2.RES_ARRIV <= R1.RES_DEPART;
+
+-- Check for customers with invalid state codes
+SELECT *
+FROM UNTP019.CUSTOMER
+WHERE CUS_TAGST NOT IN ('CA', 'TX', 'FL', 'NY', 'IL', 'OK', 'AZ', 'NV', 'CO', 'WA');
+
+-- ============================================
+-- PERFORMANCE OPTIMIZATION QUERIES
+-- ============================================
+
+-- Analyze index usage (requires DB2 admin rights)
+-- SELECT * FROM SYSCAT.INDEXES WHERE TABNAME = 'RESERVE';
+
+-- Update statistics for query optimizer
+-- RUNSTATS ON TABLE UNTP019.RESERVE;
+
+-- ============================================
+-- EXPORT QUERY FOR DATA MIGRATION/BACKUP
+-- ============================================
+
+-- Export all reservation data for archival
+SELECT 
+  R.*,
+  C.CUS_FNAME,
+  C.CUS_LNAME,
+  S.SITE_NAME,
+  G.CAMP_NAME
+FROM UNTP019.RESERVE R
+JOIN UNTP019.CUSTOMER C ON R.CUS_ID = C.CUS_ID
+JOIN UNTP019.CAMSITE S ON R.SITE_ID = S.SITE_ID
+JOIN UNTP019.CAMPGRD G ON S.CAMP_ID = G.CAMP_ID
+ORDER BY R.RES_ARRIV;
+
+-- ============================================
+-- END OF SQL PROJECT
+-- ============================================
+-- This project was compiled and executed in the IBM Z operating environment
+-- demonstrating enterprise-level database management skills
