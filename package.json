@@ -1,0 +1,27 @@
+{
+  "name": "data-analytics-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website for Data Analytics Intern position at BRG Sports",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server .",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "portfolio",
+    "data-analytics",
+    "python",
+    "sql",
+    "r",
+    "vercel"
+  ],
+  "author": "Hemanth Dhamodharan",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
