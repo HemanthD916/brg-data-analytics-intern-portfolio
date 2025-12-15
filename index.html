@@ -7,70 +7,78 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="riddell-logo.jpg" type="image/jpg"> 
     <style>
-        /* COMPLETELY REDESIGNED CODE SNIPPET STYLES */
+        /* Enhanced styles for better code snippet visibility */
         .python-code-snippet {
-            background-color: #ffffff !important;
-            color: #2c3e50 !important;
-            border: 2px solid #e0e0e0 !important;
-            font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 15px !important;
-            line-height: 1.6 !important;
-            padding: 25px !important;
-            margin: 20px 0 !important;
-            border-radius: 8px !important;
+            background-color: #f8f9fa !important;
+            color: #212529 !important;
+            border-left: 4px solid #2a5298 !important;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            padding: 1.5rem !important;
+            margin: 1.5rem 0;
+            border-radius: 5px;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
-            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
         
-        /* HIGH-CONTRAST SYNTAX HIGHLIGHTING */
+        /* HIGH CONTRAST COLORS - Ensures all code is visible */
         .python-code-snippet .keyword { 
-            color: #d73a49 !important; /* Bright red for keywords */
-            font-weight: 700 !important;
+            color: #d73a49 !important;  /* Bright red for keywords */
+            font-weight: bold; 
         }
-        
         .python-code-snippet .string { 
-            color: #032f62 !important; /* Dark blue for strings */
-            font-weight: 500 !important;
+            color: #032f62 !important;  /* Dark blue for strings */
+            font-weight: bold;
         }
-        
         .python-code-snippet .comment { 
-            color: #6a737d !important; /* Gray for comments */
-            font-style: italic !important;
-            font-weight: 400 !important;
+            color: #6a737d !important;  /* Gray for comments */
+            font-style: italic;
         }
-        
         .python-code-snippet .function { 
-            color: #6f42c1 !important; /* Purple for functions */
-            font-weight: 600 !important;
+            color: #6f42c1 !important;  /* Purple for functions */
+            font-weight: bold;
         }
-        
         .python-code-snippet .number { 
-            color: #005cc5 !important; /* Blue for numbers */
-            font-weight: 600 !important;
+            color: #005cc5 !important;  /* Bright blue for numbers */
+            font-weight: bold;
         }
-        
         .python-code-snippet .class { 
-            color: #22863a !important; /* Green for classes */
-            font-weight: 700 !important;
+            color: #22863a !important;  /* Green for classes */
+            font-weight: bold;
+        }
+        .python-code-snippet .operator {
+            color: #d73a49 !important;  /* Red for operators */
+        }
+        .python-code-snippet .punctuation {
+            color: #24292e !important;  /* Black for punctuation */
         }
         
-        .python-code-snippet .self { 
-            color: #e36209 !important; /* Orange for self */
-            font-weight: 600 !important;
+        /* Make sure ALL regular code is visible */
+        code, .python-code-snippet code {
+            color: #212529 !important;
+            font-weight: normal !important;
         }
         
-        .python-code-snippet .operator { 
-            color: #d73a49 !important; /* Red for operators */
-            font-weight: 500 !important;
+        /* Regular pre/code styling */
+        pre {
+            background-color: #f8f9fa !important;
+            color: #212529 !important;
+            border-left: 4px solid #2a5298 !important;
         }
         
-        .python-code-snippet .builtin { 
-            color: #005cc5 !important; /* Blue for builtins */
-            font-weight: 600 !important;
+        /* High contrast for all code in pre tags */
+        pre code {
+            color: #212529 !important;
         }
+        pre .keyword { color: #d73a49 !important; font-weight: bold; }
+        pre .string { color: #032f62 !important; font-weight: bold; }
+        pre .comment { color: #6a737d !important; font-style: italic; }
+        pre .function { color: #6f42c1 !important; font-weight: bold; }
+        pre .number { color: #005cc5 !important; font-weight: bold; }
+        pre .class { color: #22863a !important; font-weight: bold; }
         
         /* Project section specific styling */
         .project {
@@ -103,34 +111,6 @@
             border-left: 4px solid #ffcc00;
             margin: 1.5rem 0;
             font-size: 1.1rem;
-        }
-        
-        /* Code header */
-        .code-header {
-            background: linear-gradient(135deg, #2a5298, #1e3c72);
-            color: white;
-            padding: 12px 25px;
-            margin: -25px -25px 20px -25px;
-            border-radius: 8px 8px 0 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .code-header span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .code-header .language-tag {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
         }
     </style>
 </head>
@@ -198,132 +178,76 @@
             <p>Developed a full-stack Python system for managing library catalogs using OOP principles like inheritance and polymorphism. Implemented functionality to add/edit/delete/track patrons, items, fines, and loans. Demonstrates data handling, integration simulation, and reporting relevant to data management in enterprise environments.</p>
             
             <div class="python-code-snippet">
-                <div class="code-header">
-                    <span>📁 library_management.py</span>
-                    <span class="language-tag">Python</span>
-                </div>
-<code><span class="comment"># ============================================</span>
-<span class="comment"># LIBRARY MANAGEMENT SYSTEM - PYTHON OOP DEMO</span>
-<span class="comment"># ============================================</span>
-<span class="comment"># Demonstrating: Inheritance, Polymorphism, Data Management</span>
-
-<span class="keyword">from</span> <span class="builtin">datetime</span> <span class="keyword">import</span> <span class="builtin">datetime</span>
-<span class="keyword">import</span> <span class="builtin">json</span>
-
-<span class="comment"># ============================================</span>
-<span class="comment"># BASE CLASS: LibraryItem (Demonstrates Inheritance)</span>
-<span class="comment"># ============================================</span>
-<span class="keyword">class</span> <span class="class">LibraryItem</span>:
+<code><span class="keyword">class</span> <span class="class">LibraryItem</span>:
     <span class="string">"""Base class for all library items demonstrating inheritance"""</span>
     
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="self">self</span>, title, item_id, category):
-        <span class="self">self</span>.title = title
-        <span class="self">self</span>.item_id = item_id
-        <span class="self">self</span>.category = category
-        <span class="self">self</span>.status = <span class="string">"Available"</span>
-        <span class="self">self</span>.checkout_count = <span class="number">0</span>
-        <span class="self">self</span>.checkout_history = []  <span class="comment"># Data tracking for analytics</span>
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, title, item_id, category):
+        <span class="keyword">self</span>.title = title
+        <span class="keyword">self</span>.item_id = item_id
+        <span class="keyword">self</span>.category = category
+        <span class="keyword">self</span>.status = <span class="string">"Available"</span>
+        <span class="keyword">self</span>.checkout_count = <span class="number">0</span>
+        <span class="keyword">self</span>.checkout_history = []  <span class="comment"># Data tracking for analytics</span>
 
-    <span class="keyword">def</span> <span class="function">checkout</span>(<span class="self">self</span>, patron_id):
-        <span class="keyword">if</span> <span class="self">self</span>.status <span class="operator">==</span> <span class="string">"Available"</span>:
-            <span class="self">self</span>.status = <span class="string">"Checked Out"</span>
-            <span class="self">self</span>.checkout_count <span class="operator">+=</span> <span class="number">1</span>
-            <span class="self">self</span>.checkout_history.append({
+    <span class="keyword">def</span> <span class="function">checkout</span>(<span class="keyword">self</span>, patron_id):
+        <span class="keyword">if</span> <span class="keyword">self</span>.status == <span class="string">"Available"</span>:
+            <span class="keyword">self</span>.status = <span class="string">"Checked Out"</span>
+            <span class="keyword">self</span>.checkout_count += <span class="number">1</span>
+            <span class="keyword">self</span>.checkout_history.append({
                 <span class="string">"patron_id"</span>: patron_id,
-                <span class="string">"date"</span>: <span class="builtin">datetime</span>.now(),
+                <span class="string">"date"</span>: <span class="keyword">datetime</span>.now(),
                 <span class="string">"action"</span>: <span class="string">"checkout"</span>
             })
-            <span class="keyword">return</span> <span class="builtin">True</span>
-        <span class="keyword">return</span> <span class="builtin">False</span>
+            <span class="keyword">return</span> <span class="keyword">True</span>
+        <span class="keyword">return</span> <span class="keyword">False</span>
 
-    <span class="keyword">def</span> <span class="function">checkin</span>(<span class="self">self</span>):
-        <span class="self">self</span>.status = <span class="string">"Available"</span>
-        <span class="keyword">return</span> <span class="builtin">True</span>
-
-    <span class="keyword">def</span> <span class="function">get_analytics</span>(<span class="self">self</span>):
+    <span class="keyword">def</span> <span class="function">get_analytics</span>(<span class="keyword">self</span>):
         <span class="string">"""Returns usage statistics for data analysis"""</span>
         <span class="keyword">return</span> {
-            <span class="string">"title"</span>: <span class="self">self</span>.title,
-            <span class="string">"checkout_count"</span>: <span class="self">self</span>.checkout_count,
-            <span class="string">"popularity_score"</span>: <span class="self">self</span>.checkout_count / <span class="number">30</span>  <span class="comment"># Assuming 30-day period</span>
+            <span class="string">"title"</span>: <span class="keyword">self</span>.title,
+            <span class="string">"checkout_count"</span>: <span class="keyword">self</span>.checkout_count,
+            <span class="string">"popularity_score"</span>: <span class="keyword">self</span>.checkout_count / <span class="number">30</span>  <span class="comment"># Assuming 30-day period</span>
         }
 
-<span class="comment"># ============================================</span>
-<span class="comment"># DERIVED CLASS: Book (Demonstrates Inheritance)</span>
-<span class="comment"># ============================================</span>
+
 <span class="keyword">class</span> <span class="class">Book</span>(<span class="class">LibraryItem</span>):
     <span class="string">"""Book class demonstrating inheritance from LibraryItem"""</span>
     
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="self">self</span>, title, item_id, author, isbn, category<span class="operator">=</span><span class="string">"General"</span>):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, title, item_id, author, isbn, category=<span class="string">"General"</span>):
         <span class="keyword">super</span>().<span class="function">__init__</span>(title, item_id, category)
-        <span class="self">self</span>.author = author
-        <span class="self">self</span>.isbn = isbn
-        <span class="self">self</span>.page_count = <span class="number">0</span>
-        <span class="self">self</span>.publisher = <span class="string">""</span>
+        <span class="keyword">self</span>.author = author
+        <span class="keyword">self</span>.isbn = isbn
+        <span class="keyword">self</span>.page_count = <span class="number">0</span>
+        <span class="keyword">self</span>.publisher = <span class="string">""</span>
 
-    <span class="keyword">def</span> <span class="function">calculate_fine</span>(<span class="self">self</span>, days_overdue):
+    <span class="keyword">def</span> <span class="function">calculate_fine</span>(<span class="keyword">self</span>, days_overdue):
         <span class="string">"""Calculates fine based on overdue days"""</span>
-        <span class="keyword">return</span> days_overdue <span class="operator">*</span> <span class="number">0.25</span>  <span class="comment"># $0.25 per day</span>
+        <span class="keyword">return</span> days_overdue * <span class="number">0.25</span>  <span class="comment"># $0.25 per day
 
-<span class="comment"># ============================================</span>
-<span class="comment"># DERIVED CLASS: DVD (Demonstrates Polymorphism)</span>
-<span class="comment"># ============================================</span>
-<span class="keyword">class</span> <span class="class">DVD</span>(<span class="class">LibraryItem</span>):
-    <span class="string">"""DVD class with different checkout period (polymorphism)"""</span>
-    
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="self">self</span>, title, item_id, director, runtime, category<span class="operator">=</span><span class="string">"Entertainment"</span>):
-        <span class="keyword">super</span>().<span class="function">__init__</span>(title, item_id, category)
-        <span class="self">self</span>.director = director
-        <span class="self">self</span>.runtime = runtime
 
-    <span class="keyword">def</span> <span class="function">calculate_fine</span>(<span class="self">self</span>, days_overdue):
-        <span class="string">"""Different fine calculation for DVDs"""</span>
-        <span class="keyword">return</span> days_overdue <span class="operator">*</span> <span class="number">1.00</span>  <span class="comment"># $1.00 per day</span>
+<span class="comment"># Demonstrate polymorphism with different item types</span>
+items = [
+    Book(<span class="string">"Data Analytics Fundamentals"</span>, <span class="number">101</span>, <span class="string">"John Smith"</span>, <span class="string">"978-1234567890"</span>, <span class="string">"Technology"</span>),
+    Book(<span class="string">"Python Programming"</span>, <span class="number">102</span>, <span class="string">"Jane Doe"</span>, <span class="string">"978-0987654321"</span>, <span class="string">"Programming"</span>)
+]
 
-<span class="comment"># ============================================</span>
-<span class="comment"># DEMONSTRATION: Polymorphism with different item types</span>
-<span class="comment"># ============================================</span>
-<span class="keyword">if</span> <span class="builtin">__name__</span> <span class="operator">==</span> <span class="string">"__main__"</span>:
-    
-    <span class="comment"># Create different item types (polymorphism)</span>
-    items = [
-        <span class="function">Book</span>(<span class="string">"Data Analytics Fundamentals"</span>, <span class="number">101</span>, <span class="string">"John Smith"</span>, <span class="string">"978-1234567890"</span>, <span class="string">"Technology"</span>),
-        <span class="function">Book</span>(<span class="string">"Python Programming"</span>, <span class="number">102</span>, <span class="string">"Jane Doe"</span>, <span class="string">"978-0987654321"</span>, <span class="string">"Programming"</span>),
-        <span class="function">DVD</span>(<span class="string">"Data Science Documentary"</span>, <span class="number">201</span>, <span class="string">"Dr. Analytics"</span>, <span class="number">120</span>, <span class="string">"Documentary"</span>)
-    ]
+<span class="comment"># Data analysis example: Find popular items</span>
+popular_items = [item <span class="keyword">for</span> item <span class="keyword">in</span> items <span class="keyword">if</span> item.checkout_count &gt; <span class="number">10</span>]
+print(<span class="string">f"Popular items count: {len(popular_items)}"</span>)
 
-    <span class="comment"># Simulate checkouts</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">15</span>):
-        items[<span class="number">0</span>].<span class="function">checkout</span>(<span class="number">1001</span> + i)
-        items[<span class="number">0</span>].<span class="function">checkin</span>()
-
-    <span class="comment"># Data analysis example: Find popular items</span>
-    popular_items = [item <span class="keyword">for</span> item <span class="keyword">in</span> items <span class="keyword">if</span> item.checkout_count <span class="operator">></span> <span class="number">10</span>]
-    <span class="builtin">print</span>(<span class="string">f"Popular items count: {</span><span class="builtin">len</span>(popular_items)<span class="string">}"</span>)
-
-    <span class="comment"># Generate analytics report</span>
-    <span class="builtin">print</span>(<span class="string">"\n=== ANALYTICS REPORT ==="</span>)
-    <span class="keyword">for</span> item <span class="keyword">in</span> items:
-        analytics = item.<span class="function">get_analytics</span>()
-        <span class="builtin">print</span>(<span class="string">f"Item: {analytics['title']}, Checkouts: {analytics['checkout_count']}, "</span>
-              <span class="string">f"Popularity: {analytics['popularity_score']:.2f}"</span>)
-
-    <span class="comment"># Demonstrate inheritance hierarchy</span>
-    <span class="builtin">print</span>(<span class="string">"\n=== INHERITANCE DEMONSTRATION ==="</span>)
-    <span class="keyword">for</span> item <span class="keyword">in</span> items:
-        item_type = item.<span class="builtin">__class__</span>.<span class="builtin">__name__</span>
-        base_class = item.<span class="builtin">__class__</span>.<span class="builtin">__bases__</span>[<span class="number">0</span>].<span class="builtin">__name__</span>
-        <span class="builtin">print</span>(<span class="string">f"{item_type} inherits from {base_class}: {</span><span class="builtin">isinstance</span>(item, LibraryItem)<span class="string">}"</span>)</code>
+<span class="comment"># Generate analytics report</span>
+<span class="keyword">for</span> item <span class="keyword">in</span> items:
+    analytics = item.get_analytics()
+    print(<span class="string">f"Item: {analytics['title']}, Checkouts: {analytics['checkout_count']}"</span>)</code>
             </div>
             
             <p><strong>Key Features Demonstrated:</strong></p>
             <ul>
-                <li><strong>Inheritance:</strong> Book and DVD classes inherit from LibraryItem base class</li>
-                <li><strong>Polymorphism:</strong> Different item types can be processed uniformly through base class methods</li>
-                <li><strong>Data Management:</strong> Tracking checkout history, statistics, and analytics</li>
-                <li><strong>Analytics & Reporting:</strong> Built-in methods for data analysis and generating insights</li>
-                <li><strong>Error Handling:</strong> Proper validation in checkout/checkin processes</li>
-                <li><strong>Data Persistence:</strong> JSON-ready structure for saving/loading data</li>
+                <li><strong>Inheritance:</strong> Book class inherits from LibraryItem base class</li>
+                <li><strong>Polymorphism:</strong> Different item types can be processed uniformly</li>
+                <li><strong>Data Management:</strong> Tracking checkout history and statistics</li>
+                <li><strong>Analytics:</strong> Built-in methods for data analysis and reporting</li>
+                <li><strong>Error Handling:</strong> Proper validation in checkout process</li>
             </ul>
         </div>
         
@@ -339,7 +263,7 @@ SELECT DISTINCT C.CAMP_NAME
 FROM UNTP019.CAMPGRD C  
 JOIN UNTP019.CAMSITE S ON C.CAMP_ID = S.CAMP_ID  
 JOIN UNTP019.STYPE T ON S.STYPE_ID = T.STYPE_ID  
-WHERE T.STYPE_ELEC > 0 AND S.SITE_FRING = 1;
+WHERE T.STYPE_ELEC &gt; 0 AND S.SITE_FRING = 1;
 
 -- Another analytical query: Customers with multiple reservations
 SELECT   
@@ -349,7 +273,7 @@ SELECT
 FROM UNTP019.CUSTOMER C  
 JOIN UNTP019.RESERVE R ON C.CUS_ID = R.CUS_ID  
 GROUP BY C.CUS_ID, C.CUS_FNAME, C.CUS_LNAME, C.CUS_EMAIL
-HAVING COUNT(R.RES_ID) > 1;</code></pre>
+HAVING COUNT(R.RES_ID) &gt; 1;</code></pre>
             
             <p><strong>Project Description:</strong> This SQL project involved designing a complete database system for a campground business, including tables for campsites, site types, customers, and reservations. I used the <strong>IBM Z operating environment</strong> to compile and run all SQL code, demonstrating my ability to work with enterprise mainframe systems. The project showcases my skills in data modeling, complex query writing for business intelligence, and understanding of relational database principles.</p>
         </div>
@@ -358,36 +282,36 @@ HAVING COUNT(R.RES_ID) > 1;</code></pre>
             <h3>Chip Category Sales Analysis – R & Data Analytics (Spring 2025)</h3>
             <p>Conducted comprehensive sales data analysis for a chip manufacturing company using R. Cleaned transaction data, performed customer segmentation analysis, calculated key metrics by demographic segments, and generated strategic recommendations for category management. Demonstrates end-to-end analytical workflow from raw data to business insights.</p>
             
-            <pre><code># R Code Snippet: Data Cleaning & Customer Segmentation Analysis
-# Demonstrates proficiency with data.table, dplyr-like operations in R
+            <pre><code><span class="comment"># R Code Snippet: Data Cleaning & Customer Segmentation Analysis</span>
+<span class="comment"># Demonstrates proficiency with data.table, dplyr-like operations in R</span>
 
-library(data.table)
-library(readxl)
+<span class="keyword">library</span>(data.table)
+<span class="keyword">library</span>(readxl)
 
-# Load and clean transaction data
-transactionData <- read_excel("QVI_transaction_data.xlsx")
-setDT(transactionData)
+<span class="comment"># Load and clean transaction data</span>
+transactionData &lt;- <span class="function">read_excel</span>(<span class="string">"QVI_transaction_data.xlsx"</span>)
+<span class="function">setDT</span>(transactionData)
 
-# Data cleaning: Remove salsa products and outlier transactions
-transactionData[, SALSA := grepl("salsa", tolower(PROD_NAME))]
-transactionData <- transactionData[SALSA == FALSE, ][, SALSA := NULL]
-transactionData <- transactionData[PROD_QTY != 200]  # Remove outlier
+<span class="comment"># Data cleaning: Remove salsa products and outlier transactions</span>
+transactionData[, SALSA := <span class="function">grepl</span>(<span class="string">"salsa"</span>, <span class="function">tolower</span>(PROD_NAME))]
+transactionData &lt;- transactionData[SALSA == <span class="keyword">FALSE</span>, ][, SALSA := <span class="keyword">NULL</span>]
+transactionData &lt;- transactionData[PROD_QTY != <span class="number">200</span>]  <span class="comment"># Remove outlier</span>
 
-# Feature engineering: Extract pack size and brand from product name
-transactionData[, PACK_SIZE := parse_number(PROD_NAME)]
-transactionData[, BRAND := str_extract(PROD_NAME, "^\\w+")]
+<span class="comment"># Feature engineering: Extract pack size and brand from product name</span>
+transactionData[, PACK_SIZE := <span class="function">parse_number</span>(PROD_NAME)]
+transactionData[, BRAND := <span class="function">str_extract</span>(PROD_NAME, <span class="string">"^\\w+"</span>)]
 
-# Merge with customer data for segmentation analysis
-data <- merge(transactionData, customerData, by = "LYLTY_CARD_NBR", all.x = TRUE)
+<span class="comment"># Merge with customer data for segmentation analysis</span>
+data &lt;- <span class="function">merge</span>(transactionData, customerData, by = <span class="string">"LYLTY_CARD_NBR"</span>, all.x = <span class="keyword">TRUE</span>)
 
-# Calculate sales by customer segment for strategic insights
-salesBySegment <- data[, .(Total_Sales = sum(TOT_SALES)), 
+<span class="comment"># Calculate sales by customer segment for strategic insights</span>
+salesBySegment &lt;- data[, .(Total_Sales = <span class="function">sum</span>(TOT_SALES)), 
                        by = .(LIFESTAGE, PREMIUM_CUSTOMER)]
 
-# Identify top-performing segments
-topSegments <- salesBySegment[order(-Total_Sales)][1:3]
-cat("Top 3 Customer Segments by Sales:\n")
-print(topSegments)</code></pre>
+<span class="comment"># Identify top-performing segments</span>
+topSegments &lt;- salesBySegment[<span class="function">order</span>(-Total_Sales)][<span class="number">1</span>:<span class="number">3</span>]
+<span class="function">cat</span>(<span class="string">"Top 3 Customer Segments by Sales:\n"</span>)
+<span class="function">print</span>(topSegments)</code></pre>
             
             <p><strong>Project Description:</strong> This R analytics project involved analyzing chip sales data to identify key customer segments and purchasing patterns. I performed data cleaning, feature engineering, customer segmentation, and calculated business metrics like average price per unit by segment. The analysis culminated in strategic recommendations for targeted marketing, demonstrating my ability to translate data insights into actionable business strategies.</p>
         </div>
@@ -396,50 +320,50 @@ print(topSegments)</code></pre>
             <h3>Mean Green EagleLift Ride-Sharing System – C++ (Fall 2023)</h3>
             <p>Designed a C++ ride-sharing system with ERD for data modeling and matching algorithms for efficiency. Analyzed simulated ride data for inclusivity metrics (e.g., accessibility matches)—demonstrating data-driven optimization and algorithmic thinking applicable to business analytics.</p>
             
-            <pre><code>// Sample C++ Code: Data Matching & Analysis for Ride-Sharing
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
+            <pre><code><span class="comment">// Sample C++ Code: Data Matching & Analysis for Ride-Sharing</span>
+<span class="preprocessor">#include</span> &lt;vector&gt;
+<span class="preprocessor">#include</span> &lt;algorithm&gt;
 
-// Data structure for driver information
-struct Driver {
-    int id;
-    int capacity;
-    bool accessible;
-    double rating;
+<span class="comment">// Data structure for driver information</span>
+<span class="keyword">struct</span> Driver {
+    <span class="type">int</span> id;
+    <span class="type">int</span> capacity;
+    <span class="type">bool</span> accessible;
+    <span class="type">double</span> rating;
 };
 
-// Data structure for passenger information  
-struct Passenger {
-    int id;
-    int needs;  // Number of passengers
-    bool requiresAccessible;
+<span class="comment">// Data structure for passenger information</span>  
+<span class="keyword">struct</span> Passenger {
+    <span class="type">int</span> id;
+    <span class="type">int</span> needs;  <span class="comment">// Number of passengers</span>
+    <span class="type">bool</span> requiresAccessible;
 };
 
-// Matching algorithm based on data analysis
-vector&lt;int&gt; matchDriversToPassengers(vector&lt;Driver&gt;& drivers, vector&lt;Passenger&gt;& passengers) {
-    vector&lt;int&gt; matches;
+<span class="comment">// Matching algorithm based on data analysis</span>
+vector&lt;<span class="type">int</span>&gt; <span class="function">matchDriversToPassengers</span>(vector&lt;Driver&gt;& drivers, vector&lt;Passenger&gt;& passengers) {
+    vector&lt;<span class="type">int</span>&gt; matches;
     
-    // Sort by capacity for optimal matching (data optimization)
-    sort(drivers.begin(), drivers.end(), 
-         [](Driver a, Driver b) { return a.capacity &gt; b.capacity; });
+    <span class="comment">// Sort by capacity for optimal matching (data optimization)</span>
+    <span class="function">sort</span>(drivers.<span class="function">begin</span>(), drivers.<span class="function">end</span>(), 
+         [](Driver a, Driver b) { <span class="keyword">return</span> a.capacity &gt; b.capacity; });
     
-    // Match passengers with appropriate drivers
-    for (auto& passenger : passengers) {
-        for (auto& driver : drivers) {
-            if (driver.capacity &gt;= passenger.needs && 
+    <span class="comment">// Match passengers with appropriate drivers</span>
+    <span class="keyword">for</span> (<span class="keyword">auto</span>& passenger : passengers) {
+        <span class="keyword">for</span> (<span class="keyword">auto</span>& driver : drivers) {
+            <span class="keyword">if</span> (driver.capacity &gt;= passenger.needs &amp;&amp; 
                 (!passenger.requiresAccessible || driver.accessible)) {
-                matches.push_back(driver.id);
-                driver.capacity -= passenger.needs;  // Update available capacity
-                break;
+                matches.<span class="function">push_back</span>(driver.id);
+                driver.capacity -= passenger.needs;  <span class="comment">// Update available capacity</span>
+                <span class="keyword">break</span>;
             }
         }
     }
     
-    // Calculate and report matching success rate (analytics)
-    double successRate = (matches.size() * 100.0) / passengers.size();
-    cout &lt;&lt; "Matching success rate: " &lt;&lt; successRate &lt;&lt; "%" &lt;&lt; endl;
+    <span class="comment">// Calculate and report matching success rate (analytics)</span>
+    <span class="type">double</span> successRate = (matches.<span class="function">size</span>() * <span class="number">100.0</span>) / passengers.<span class="function">size</span>();
+    cout &lt;&lt; <span class="string">"Matching success rate: "</span> &lt;&lt; successRate &lt;&lt; <span class="string">"%"</span> &lt;&lt; endl;
     
-    return matches;
+    <span class="keyword">return</span> matches;
 }</code></pre>
         </div>
     </section>
