@@ -7,53 +7,71 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="riddell-logo.jpg" type="image/jpg"> 
     <style>
-        /* Additional styles for code snippets */
-        code, pre {
-            background-color: #f5f5f5;
+        /* Enhanced styles for better code snippet visibility */
+        .python-code-snippet {
+            background-color: #f8f9fa !important;
+            color: #212529 !important;
+            border-left: 4px solid #2a5298 !important;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+            padding: 1.5rem !important;
+            margin: 1.5rem 0;
             border-radius: 5px;
-            padding: 10px;
-            display: block;
             overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            margin: 10px 0;
-            border-left: 3px solid #0077cc;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
         
+        .python-code-snippet .keyword { color: #0000ff; font-weight: bold; }
+        .python-code-snippet .string { color: #a31515; }
+        .python-code-snippet .comment { color: #008000; }
+        .python-code-snippet .function { color: #795e26; }
+        .python-code-snippet .number { color: #098658; }
+        .python-code-snippet .class { color: #267f99; font-weight: bold; }
+        
+        code {
+            color: #212529 !important;
+        }
+        
+        pre {
+            background-color: #f8f9fa !important;
+            color: #212529 !important;
+            border-left: 4px solid #2a5298 !important;
+        }
+        
+        /* Project section specific styling */
         .project {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 8px;
-            border-left: 5px solid #2a7de1;
+            background-color: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #2a5298;
+            transition: transform 0.3s ease;
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
         .project h3 {
-            color: #2a7de1;
-            margin-top: 0;
-        }
-        
-        .project-links {
-            margin: 10px 0;
-        }
-        
-        .project-links a {
-            color: #2a7de1;
-            text-decoration: none;
-            font-weight: bold;
-            margin-right: 15px;
-        }
-        
-        .project-links a:hover {
-            text-decoration: underline;
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
         }
         
         .highlight {
             background-color: #fff9e6;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 8px;
             border-left: 4px solid #ffcc00;
-            margin: 15px 0;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -119,47 +137,85 @@
         <div class="project">
             <h3>Library Management System – Python (Summer 2024)</h3>
             <p>Developed a full-stack Python system for managing library catalogs using OOP principles like inheritance and polymorphism. Implemented functionality to add/edit/delete/track patrons, items, fines, and loans. Demonstrates data handling, integration simulation, and reporting relevant to data management in enterprise environments.</p>
-            <div class="project-links">
-                <a href="https://hemanthd916.pythonanywhere.com" target="_blank">Live Demo</a>
-                <a href="https://github.com/hemanthd916/library-management-system" target="_blank">GitHub Repository</a>
+            
+            <div class="python-code-snippet">
+<code><span class="keyword">class</span> <span class="class">LibraryItem</span>:
+    <span class="string">"""Base class for all library items demonstrating inheritance"""</span>
+    
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, title, item_id, category):
+        <span class="keyword">self</span>.title = title
+        <span class="keyword">self</span>.item_id = item_id
+        <span class="keyword">self</span>.category = category
+        <span class="keyword">self</span>.status = <span class="string">"Available"</span>
+        <span class="keyword">self</span>.checkout_count = <span class="number">0</span>
+        <span class="keyword">self</span>.checkout_history = []  <span class="comment"># Data tracking for analytics</span>
+
+    <span class="keyword">def</span> <span class="function">checkout</span>(<span class="keyword">self</span>, patron_id):
+        <span class="keyword">if</span> <span class="keyword">self</span>.status == <span class="string">"Available"</span>:
+            <span class="keyword">self</span>.status = <span class="string">"Checked Out"</span>
+            <span class="keyword">self</span>.checkout_count += <span class="number">1</span>
+            <span class="keyword">self</span>.checkout_history.append({
+                <span class="string">"patron_id"</span>: patron_id,
+                <span class="string">"date"</span>: <span class="keyword">datetime</span>.now(),
+                <span class="string">"action"</span>: <span class="string">"checkout"</span>
+            })
+            <span class="keyword">return</span> <span class="keyword">True</span>
+        <span class="keyword">return</span> <span class="keyword">False</span>
+
+    <span class="keyword">def</span> <span class="function">get_analytics</span>(<span class="keyword">self</span>):
+        <span class="string">"""Returns usage statistics for data analysis"""</span>
+        <span class="keyword">return</span> {
+            <span class="string">"title"</span>: <span class="keyword">self</span>.title,
+            <span class="string">"checkout_count"</span>: <span class="keyword">self</span>.checkout_count,
+            <span class="string">"popularity_score"</span>: <span class="keyword">self</span>.checkout_count / <span class="number">30</span>  <span class="comment"># Assuming 30-day period</span>
+        }
+
+
+<span class="keyword">class</span> <span class="class">Book</span>(<span class="class">LibraryItem</span>):
+    <span class="string">"""Book class demonstrating inheritance from LibraryItem"""</span>
+    
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, title, item_id, author, isbn, category=<span class="string">"General"</span>):
+        <span class="keyword">super</span>().<span class="function">__init__</span>(title, item_id, category)
+        <span class="keyword">self</span>.author = author
+        <span class="keyword">self</span>.isbn = isbn
+        <span class="keyword">self</span>.page_count = <span class="number">0</span>
+        <span class="keyword">self</span>.publisher = <span class="string">""</span>
+
+    <span class="keyword">def</span> <span class="function">calculate_fine</span>(<span class="keyword">self</span>, days_overdue):
+        <span class="string">"""Calculates fine based on overdue days"""</span>
+        <span class="keyword">return</span> days_overdue * <span class="number">0.25</span>  <span class="comment"># $0.25 per day
+
+
+# Demonstrate polymorphism with different item types
+items = [
+    Book(<span class="string">"Data Analytics Fundamentals"</span>, <span class="number">101</span>, <span class="string">"John Smith"</span>, <span class="string">"978-1234567890"</span>, <span class="string">"Technology"</span>),
+    Book(<span class="string">"Python Programming"</span>, <span class="number">102</span>, <span class="string">"Jane Doe"</span>, <span class="string">"978-0987654321"</span>, <span class="string">"Programming"</span>)
+]
+
+# Data analysis example: Find popular items
+popular_items = [item <span class="keyword">for</span> item <span class="keyword">in</span> items <span class="keyword">if</span> item.checkout_count > <span class="number">10</span>]
+print(<span class="string">f"Popular items count: {len(popular_items)}"</span>)
+
+# Generate analytics report
+<span class="keyword">for</span> item <span class="keyword">in</span> items:
+    analytics = item.get_analytics()
+    print(<span class="string">f"Item: {analytics['title']}, Checkouts: {analytics['checkout_count']}"</span>)</span></code>
             </div>
-            <pre><code># Sample Python Code: OOP Inheritance for Data Management
-class LibraryItem:
-    def __init__(self, title, item_id):
-        self.title = title
-        self.item_id = item_id
-        self.status = "Available"
-        self.loan_history = []  # Track data for analytics
-
-class Book(LibraryItem):
-    def __init__(self, title, item_id, author, category):
-        super().__init__(title, item_id)
-        self.author = author
-        self.category = category
-        self.checkout_count = 0  # Data point for popularity analysis
-
-    def checkout(self, patron_id):
-        self.status = "Checked Out"
-        self.checkout_count += 1
-        self.loan_history.append({
-            "patron_id": patron_id,
-            "date": datetime.now(),
-            "action": "checkout"
-        })
-        return f"Book '{self.title}' checked out successfully"
-
-# Usage: Demonstrates structured data management
-popular_books = [book for book in library if book.checkout_count > 10]
-print(f"Popular titles: {[b.title for b in popular_books]}")
-</code></pre>
+            
+            <p><strong>Key Features Demonstrated:</strong></p>
+            <ul>
+                <li><strong>Inheritance:</strong> Book class inherits from LibraryItem base class</li>
+                <li><strong>Polymorphism:</strong> Different item types can be processed uniformly</li>
+                <li><strong>Data Management:</strong> Tracking checkout history and statistics</li>
+                <li><strong>Analytics:</strong> Built-in methods for data analysis and reporting</li>
+                <li><strong>Error Handling:</strong> Proper validation in checkout process</li>
+            </ul>
         </div>
         
         <div class="project">
             <h3>Campground Reservation System – SQL & IBM Z Environment (Database Course Project)</h3>
             <p>Designed and implemented a comprehensive campground reservation database system using SQL in the IBM Z mainframe environment. Created tables, established relationships with foreign keys, inserted sample data, and wrote complex queries for business intelligence. Compiled and executed all code in the IBM Z operating system, demonstrating enterprise-level database proficiency.</p>
-            <div class="project-links">
-                <a href="#sql-code">View SQL Code Snippet</a>
-            </div>
+            
             <pre><code>-- SQL Code Snippet: Complex Query Demonstrating Analytical Skills
 -- This query identifies campgrounds with electric sites and fire rings
 -- Useful for business intelligence on popular amenities
@@ -178,17 +234,15 @@ SELECT
 FROM UNTP019.CUSTOMER C  
 JOIN UNTP019.RESERVE R ON C.CUS_ID = R.CUS_ID  
 GROUP BY C.CUS_ID, C.CUS_FNAME, C.CUS_LNAME, C.CUS_EMAIL
-HAVING COUNT(R.RES_ID) > 1;
-</code></pre>
+HAVING COUNT(R.RES_ID) > 1;</code></pre>
+            
             <p><strong>Project Description:</strong> This SQL project involved designing a complete database system for a campground business, including tables for campsites, site types, customers, and reservations. I used the <strong>IBM Z operating environment</strong> to compile and run all SQL code, demonstrating my ability to work with enterprise mainframe systems. The project showcases my skills in data modeling, complex query writing for business intelligence, and understanding of relational database principles.</p>
         </div>
         
         <div class="project">
             <h3>Chip Category Sales Analysis – R & Data Analytics (Spring 2025)</h3>
             <p>Conducted comprehensive sales data analysis for a chip manufacturing company using R. Cleaned transaction data, performed customer segmentation analysis, calculated key metrics by demographic segments, and generated strategic recommendations for category management. Demonstrates end-to-end analytical workflow from raw data to business insights.</p>
-            <div class="project-links">
-                <a href="#r-code">View R Code Snippet</a>
-            </div>
+            
             <pre><code># R Code Snippet: Data Cleaning & Customer Segmentation Analysis
 # Demonstrates proficiency with data.table, dplyr-like operations in R
 
@@ -218,22 +272,18 @@ salesBySegment <- data[, .(Total_Sales = sum(TOT_SALES)),
 # Identify top-performing segments
 topSegments <- salesBySegment[order(-Total_Sales)][1:3]
 cat("Top 3 Customer Segments by Sales:\n")
-print(topSegments)
-
-# Calculate price sensitivity metrics
-data[, Price_Per_Unit := TOT_SALES / PROD_QTY]
-priceBySegment <- data[, .(Avg_Price = mean(Price_Per_Unit)), 
-                       by = .(LIFESTAGE, PREMIUM_CUSTOMER)]
-</code></pre>
+print(topSegments)</code></pre>
+            
             <p><strong>Project Description:</strong> This R analytics project involved analyzing chip sales data to identify key customer segments and purchasing patterns. I performed data cleaning, feature engineering, customer segmentation, and calculated business metrics like average price per unit by segment. The analysis culminated in strategic recommendations for targeted marketing, demonstrating my ability to translate data insights into actionable business strategies.</p>
         </div>
         
         <div class="project">
             <h3>Mean Green EagleLift Ride-Sharing System – C++ (Fall 2023)</h3>
             <p>Designed a C++ ride-sharing system with ERD for data modeling and matching algorithms for efficiency. Analyzed simulated ride data for inclusivity metrics (e.g., accessibility matches)—demonstrating data-driven optimization and algorithmic thinking applicable to business analytics.</p>
+            
             <pre><code>// Sample C++ Code: Data Matching & Analysis for Ride-Sharing
-#include <vector>
-#include <algorithm>
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
 
 // Data structure for driver information
 struct Driver {
@@ -251,17 +301,17 @@ struct Passenger {
 };
 
 // Matching algorithm based on data analysis
-vector<int> matchDriversToPassengers(vector<Driver>& drivers, vector<Passenger>& passengers) {
-    vector<int> matches;
+vector&lt;int&gt; matchDriversToPassengers(vector&lt;Driver&gt;& drivers, vector&lt;Passenger&gt;& passengers) {
+    vector&lt;int&gt; matches;
     
     // Sort by capacity for optimal matching (data optimization)
     sort(drivers.begin(), drivers.end(), 
-         [](Driver a, Driver b) { return a.capacity > b.capacity; });
+         [](Driver a, Driver b) { return a.capacity &gt; b.capacity; });
     
     // Match passengers with appropriate drivers
     for (auto& passenger : passengers) {
         for (auto& driver : drivers) {
-            if (driver.capacity >= passenger.needs && 
+            if (driver.capacity &gt;= passenger.needs && 
                 (!passenger.requiresAccessible || driver.accessible)) {
                 matches.push_back(driver.id);
                 driver.capacity -= passenger.needs;  // Update available capacity
@@ -272,11 +322,10 @@ vector<int> matchDriversToPassengers(vector<Driver>& drivers, vector<Passenger>&
     
     // Calculate and report matching success rate (analytics)
     double successRate = (matches.size() * 100.0) / passengers.size();
-    cout << "Matching success rate: " << successRate << "%" << endl;
+    cout &lt;&lt; "Matching success rate: " &lt;&lt; successRate &lt;&lt; "%" &lt;&lt; endl;
     
     return matches;
-}
-</code></pre>
+}</code></pre>
         </div>
     </section>
 
