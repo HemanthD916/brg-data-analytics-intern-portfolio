@@ -1,4 +1,4 @@
-
+/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     background-color: #f8f9fa;
 }
 
-
+/* Header Styles */
 header {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
@@ -45,7 +45,7 @@ header p {
     opacity: 0.9;
 }
 
-
+/* Navigation */
 nav {
     display: flex;
     justify-content: center;
@@ -69,7 +69,7 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-
+/* Section Styles */
 section {
     padding: 4rem 2rem;
     max-width: 1200px;
@@ -95,7 +95,7 @@ section h2::after {
     background-color: #ffcc00;
 }
 
-
+/* About Section */
 #about {
     background-color: white;
     border-radius: 10px;
@@ -114,7 +114,7 @@ section h2::after {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Skills Section */
 #skills {
     background-color: #f8f9fa;
 }
@@ -147,7 +147,7 @@ section h2::after {
     font-size: 1.1rem;
 }
 
-
+/* Education Section */
 #education {
     background-color: white;
 }
@@ -165,7 +165,7 @@ section h2::after {
     border-left: 4px solid #2a5298;
 }
 
-
+/* Projects Section */
 #projects {
     background-color: #f8f9fa;
 }
@@ -212,7 +212,7 @@ section h2::after {
     color: white;
 }
 
-
+/* Code Snippet Styles */
 code, pre {
     background-color: #1e1e1e;
     color: #d4d4d4;
@@ -227,7 +227,7 @@ code, pre {
     tab-size: 4;
 }
 
-
+/* Syntax highlighting for code */
 pre .keyword { color: #569cd6; }
 pre .string { color: #ce9178; }
 pre .comment { color: #6a9955; }
@@ -243,7 +243,7 @@ pre .number { color: #b5cea8; }
     font-size: 1.1rem;
 }
 
-
+/* Why BRG Section */
 #why-brg {
     background-color: white;
 }
@@ -271,7 +271,7 @@ pre .number { color: #b5cea8; }
     font-weight: bold;
 }
 
-
+/* Contact Section */
 #contact {
     background-color: #f8f9fa;
     text-align: center;
@@ -282,7 +282,7 @@ pre .number { color: #b5cea8; }
     font-size: 1.1rem;
 }
 
-
+/* Footer */
 footer {
     background-color: #1e3c72;
     color: white;
@@ -296,7 +296,7 @@ footer p {
     opacity: 0.9;
 }
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
@@ -333,7 +333,7 @@ footer p {
     }
 }
 
-
+/* Animation for sections */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -349,7 +349,7 @@ section {
     animation: fadeInUp 0.8s ease-out;
 }
 
-
+/* Print Styles */
 @media print {
     header, footer, nav {
         display: none;
