@@ -1,221 +1,9 @@
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Add to your existing styles.css or update with these styles */
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
-}
-
-/* Header Styles */
-header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.logo {
-    height: 60px;
-    margin-bottom: 1rem;
-    filter: brightness(0) invert(1);
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-header p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-}
-
-/* Navigation */
-nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-/* Section Styles */
-section {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-section h2 {
-    font-size: 2.2rem;
-    color: #2a5298;
-    margin-bottom: 2rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid #2a5298;
-    position: relative;
-}
-
-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100px;
-    height: 3px;
-    background-color: #ffcc00;
-}
-
-/* About Section */
-#about {
-    background-color: white;
-    border-radius: 10px;
-    margin: 2rem auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.profile-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #2a5298;
-    margin: 1rem auto 2rem;
-    display: block;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* Skills Section */
-#skills {
-    background-color: #f8f9fa;
-}
-
-#skills ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-#skills li {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-}
-
-#skills li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-#skills strong {
-    color: #2a5298;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-}
-
-/* Education Section */
-#education {
-    background-color: white;
-}
-
-#education ul {
-    list-style: none;
-    margin-top: 1.5rem;
-}
-
-#education li {
-    background: #f8f9fa;
-    margin-bottom: 0.8rem;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
-    border-left: 4px solid #2a5298;
-}
-
-/* Projects Section */
-#projects {
-    background-color: #f8f9fa;
-}
-
-.project {
-    background-color: white;
-    padding: 2rem;
-    margin: 2rem 0;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border-left: 5px solid #2a5298;
-    transition: transform 0.3s ease;
-}
-
-.project:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.project h3 {
-    color: #2a5298;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.project-links {
-    margin: 1rem 0;
-}
-
-.project-links a {
-    color: #2a5298;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border: 2px solid #2a5298;
-    border-radius: 30px;
-    margin-right: 1rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.project-links a:hover {
-    background-color: #2a5298;
-    color: white;
-}
-
-/* Code Snippet Styles */
+/* Enhanced code snippet styling for better visibility */
 code, pre {
-    background-color: #1e1e1e;
-    color: #d4d4d4;
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
     border-radius: 8px;
     padding: 1.5rem;
     display: block;
@@ -223,150 +11,127 @@ code, pre {
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.95em;
     margin: 1.5rem 0;
-    border-left: 4px solid #007acc;
-    tab-size: 4;
-}
-
-/* Syntax highlighting for code */
-pre .keyword { color: #569cd6; }
-pre .string { color: #ce9178; }
-pre .comment { color: #6a9955; }
-pre .function { color: #dcdcaa; }
-pre .number { color: #b5cea8; }
-
-.highlight {
-    background-color: #fff9e6;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid #ffcc00;
-    margin: 1.5rem 0;
-    font-size: 1.1rem;
-}
-
-/* Why BRG Section */
-#why-brg {
-    background-color: white;
-}
-
-#why-brg ul {
-    list-style: none;
-    margin-top: 1.5rem;
-}
-
-#why-brg li {
-    background: #f0f7ff;
-    margin-bottom: 0.8rem;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
     border-left: 4px solid #2a5298;
-    position: relative;
-    padding-left: 3rem;
+    tab-size: 4;
+    line-height: 1.5;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-#why-brg li::before {
-    content: '✓';
-    position: absolute;
-    left: 1rem;
-    color: #2a5298;
+/* Python-specific syntax highlighting */
+.python-code-snippet {
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+    border-left: 4px solid #2a5298 !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95em;
+    line-height: 1.5;
+    padding: 1.5rem !important;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* Syntax highlighting colors for better contrast */
+.python-code-snippet .keyword { 
+    color: #0000ff !important; 
+    font-weight: bold; 
+}
+
+.python-code-snippet .string { 
+    color: #a31515 !important; 
+}
+
+.python-code-snippet .comment { 
+    color: #008000 !important; 
+    font-style: italic;
+}
+
+.python-code-snippet .function { 
+    color: #795e26 !important; 
+}
+
+.python-code-snippet .number { 
+    color: #098658 !important; 
     font-weight: bold;
 }
 
-/* Contact Section */
-#contact {
-    background-color: #f8f9fa;
-    text-align: center;
+.python-code-snippet .class { 
+    color: #267f99 !important; 
+    font-weight: bold; 
 }
 
-#contact p {
-    margin: 1rem 0;
-    font-size: 1.1rem;
+/* General syntax highlighting */
+pre .keyword { color: #0000ff !important; font-weight: bold; }
+pre .string { color: #a31515 !important; }
+pre .comment { color: #008000 !important; font-style: italic; }
+pre .function { color: #795e26 !important; }
+pre .number { color: #098658 !important; font-weight: bold; }
+pre .class { color: #267f99 !important; font-weight: bold; }
+
+/* Project section improvements */
+.project h3 {
+    color: #2a5298;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+    position: relative;
 }
 
-/* Footer */
-footer {
-    background-color: #1e3c72;
+.project h3::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background-color: #ffcc00;
+}
+
+/* Copy button styling for code snippets */
+.copy-code-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #2a5298;
     color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    z-index: 10;
 }
 
-footer p {
-    margin: 0.5rem 0;
-    opacity: 0.9;
+.copy-code-btn:hover {
+    background: #1e3c72;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
-    }
-    
-    nav a {
-        width: 80%;
-        text-align: center;
-    }
-    
-    section {
-        padding: 2rem 1rem;
-    }
-    
-    section h2 {
-        font-size: 1.8rem;
-    }
-    
-    #skills ul {
-        grid-template-columns: 1fr;
-    }
-    
-    .project-links a {
-        display: block;
-        margin-bottom: 0.5rem;
-        width: 100%;
-        text-align: center;
-    }
+/* Make sure code blocks have relative positioning for the copy button */
+pre {
+    position: relative;
 }
 
-/* Animation for sections */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-section {
-    animation: fadeInUp 0.8s ease-out;
-}
-
-/* Print Styles */
-@media print {
-    header, footer, nav {
-        display: none;
-    }
-    
-    section {
-        padding: 1rem;
-        box-shadow: none;
-    }
-    
-    .project-links {
-        display: none;
-    }
-    
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+    .python-code-snippet,
     code, pre {
-        background-color: #f5f5f5;
-        color: #333;
-        border: 1px solid #ddd;
+        background-color: #2d3748 !important;
+        color: #e2e8f0 !important;
+        border-left-color: #4299e1 !important;
     }
+    
+    .python-code-snippet .keyword { color: #63b3ed !important; }
+    .python-code-snippet .string { color: #feb2b2 !important; }
+    .python-code-snippet .comment { color: #68d391 !important; }
+    .python-code-snippet .function { color: #faf089 !important; }
+    .python-code-snippet .number { color: #81e6d9 !important; }
+    .python-code-snippet .class { color: #d6bcfa !important; }
 }
